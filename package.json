@@ -1,0 +1,11 @@
+{
+  "name": "uf-react",
+  "version": "1.0.0",
+  "description": "uncannyforest.com website",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Cloud",
+  "license": "ISC"
+}
