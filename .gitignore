@@ -7,3 +7,6 @@
 # misc
 .DS_Store
 *.pem
+
+# Ignore these directories that use rsync
+/public/images
