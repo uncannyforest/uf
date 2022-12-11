@@ -10,3 +10,4 @@
 
 # Ignore these directories that use rsync
 /public/images
+/config
