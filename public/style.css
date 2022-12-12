@@ -38,8 +38,26 @@ body {
   margin-bottom: 15px;
 }
 
-.map_item {
+.map-item {
   height: 30px;
+}
+
+.compass {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  font-size: 54pt;
+  word-spacing: 1.4sem;
+  padding: 0 0.7em;
+  font-weight: bold;
+  padding: 0;
+}
+
+.item {
+  text-align: center;
+}
+
+img.comic-nav {
+  height: 90px;
 }
 
 .clearing {
@@ -62,8 +80,4 @@ body {
   .forest-boundary, .plains {
     max-width: 937px;
   }
-}
-
-.item {
-  text-align: center;
 }

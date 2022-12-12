@@ -11,7 +11,11 @@ class App extends React.Component {
       <Router>
         <div className='forest-boundary'>
           <Header />
-          <Route exact path='/' component={Comics} />
+          <Switch>
+            <Route path='/:id(\d+)' component={Comics} />
+            <Route exact path='/welcome_home' component={Comics} />
+            <Route exact path='/' component={Comics} />
+          </Switch>
           <Footer />
         </div>
         <Plains />
