@@ -31,6 +31,14 @@ body {
   display: block;
 }
 
+a {
+  color: #60a080;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
 .map {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -96,4 +104,23 @@ img.comic-nav {
   .mobile {
     display: none;
   }
+}
+
+table.archive {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.archive td,th {
+  padding: 0 5px;
+}
+
+.archive .index {
+  text-align: right;
+}
+
+.archive .also {
+  font-size: 0.7em;
+  font-weight: bold;
+  padding-top: 0.3em;
 }
