@@ -71,6 +71,13 @@ img.comic-nav {
   .forest-boundary, .plains {
     width: 100%;
   }
+  img.panel {
+    width: 100%;
+    height: auto;
+  }
+  .desktop {
+    display: none;
+  }
 }
 
 @media (min-device-width: 600px) and (min-width: 600px) {
@@ -79,5 +86,14 @@ img.comic-nav {
   }
   .forest-boundary, .plains {
     max-width: 937px;
+  }
+  .comics {
+    padding: 15px;
+  }
+	.desktop {
+		width: 100%
+	}
+  .mobile {
+    display: none;
   }
 }

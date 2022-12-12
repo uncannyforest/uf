@@ -2,6 +2,10 @@ import axios from 'axios';
 import React from 'react';
 import Compass from './Compass'
 
+const genPanelFilename = (comic, panel) => `${comic}-${panel}`;
+const genMobilePath = (filename) => `images/comics/${filename}.jpg`;
+const genDesktopPath = (comic) => `images/comics/${comic}.png`;
+
 class Comics extends React.Component {
   constructor(props) {
     super(props);
@@ -35,13 +39,22 @@ class Comics extends React.Component {
   };
 
   render() {
-    console.log('render', this.state);
-
     if (this.state.comic === {}) return;
 
     return <>
       <Compass comicId={this.state.id} numComics={this.state.comic.totalComics}/>
-
+        <div className='comics'>
+          <div className='mobile'>
+            {[...Array(this.state.comic.panels).keys()].map(panel => (
+              <div key={panel} className='panel-div'>
+                <img src={genMobilePath(genPanelFilename(this.state.id, panel))} className='panel' />
+              </div>
+            ))}
+          </div>
+          <div className='desktop'>
+            <img src={genDesktopPath(this.state.id)} className='desktop' />
+          </div>
+        </div>
       <Compass comicId={this.state.id} numComics={this.state.comic.totalComics}/>
     </>;
   }
