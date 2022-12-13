@@ -50,6 +50,10 @@ a:hover {
   height: 30px;
 }
 
+.textinfo {
+  padding: 30px
+}
+
 .compass {
   display: grid;
   grid-template-columns: repeat(6, 1fr);

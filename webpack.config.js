@@ -13,6 +13,9 @@ const config = {
         test: /\.(js|jsx)$/,
         use: 'babel-loader',
         exclude: /node_modules/
+      }, {
+        test: /\.yaml$/,
+        use: 'js-yaml-loader',
       }
     ]
   }
