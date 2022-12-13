@@ -11,3 +11,6 @@
 # Ignore these directories that use rsync
 /public/images
 /config
+
+# Just sits on my own computer
+purpose.md

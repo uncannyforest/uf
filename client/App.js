@@ -10,7 +10,7 @@ import About from './components/About';
 import Plains from './components/Plains';
 
 import about from '../config/about.yaml'
-import email from './resources/email.html'
+import email from '../resources/email.html'
 
 class App extends React.Component {
   render() {
