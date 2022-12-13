@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import Compass from './Compass';
 
-import { mobile, desktop } from '../imagePaths';
+import { mobile, desktop } from '../../lib/imagePaths';
 import uncannyforest from '../uncannyforest';
 
 const Comics = (props) => {
@@ -15,9 +15,9 @@ const Comics = (props) => {
     <Compass comicId={id} numComics={totalComics}/>
       <div className='comics'>
         <div className='mobile'>
-          {[...Array(comic.panels).keys()].map(panel => (
-            <div key={panel} className='panel-div'>
-              <img src={mobile(id, panel)} className='panel' />
+          {mobile(id, comic.panels).map((path, index) => (
+            <div key={index} className='panel-div'>
+              <img src={path} className='panel' />
             </div>
           ))}
         </div>

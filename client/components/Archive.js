@@ -9,7 +9,9 @@ const Archive = () => {
   return (
     <div className='textinfo'>
       <div class="archive-links">
-        <Link to='/subscribe'>Email Delivery</Link>
+        <Link to='/rss'>RSS</Link>
+        &#20;▴ <Link to='/rss/mobile'>RSS (mobile scroll)</Link> 
+        &#20;▴ <Link to='/subscribe'>Email Delivery</Link>
       </div>
       <table className='archive'>
         <tbody>

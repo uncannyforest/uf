@@ -8,6 +8,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use('/api', require('./api'));
+app.use('/rss', require('./rss'));
 
 app.use(express.static(path.join(__dirname, '../public')));
 
