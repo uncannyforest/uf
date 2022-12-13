@@ -12,5 +12,8 @@
 /public/images
 /config
 
+# Ignore these directories use for precompiling images for the app
+setup/panels
+
 # Just sits on my own computer
 purpose.md

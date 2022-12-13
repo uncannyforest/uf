@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+ruby setup/uf_image.rb $@
+
+# run this from the top-level directory
+# e.g. setup/img 6 7 8
