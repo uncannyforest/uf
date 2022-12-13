@@ -8,6 +8,9 @@ import uncannyforest from '../uncannyforest'
 const Archive = () => {
   return (
     <div className='textinfo'>
+      <div class="archive-links">
+        <Link to='/subscribe'>Email Delivery</Link>
+      </div>
       <table className='archive'>
         <tbody>
           {uncannyforest.getComics().map((comic, index) => (

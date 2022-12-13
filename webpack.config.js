@@ -16,6 +16,9 @@ const config = {
       }, {
         test: /\.yaml$/,
         use: 'js-yaml-loader',
+      }, {
+        test: /\.html$/,
+        type: 'asset/source',
       }
     ]
   }

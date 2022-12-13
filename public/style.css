@@ -110,6 +110,11 @@ img.comic-nav {
   }
 }
 
+.archive-links {
+  text-align: center;
+  margin-bottom: 2em;
+}
+
 table.archive {
   margin-left: auto;
   margin-right: auto;
@@ -127,4 +132,19 @@ table.archive {
   font-size: 0.7em;
   font-weight: bold;
   padding-top: 0.3em;
+}
+
+.sparse-link {
+  text-align: center;
+  margin: -75px auto 0;
+}
+
+.sparse-link h2 {
+  font-weight: normal;
+  font-size: 1.4em;
+}
+
+.sparse {
+  margin: 45px auto 0;
+  width: 710px;
 }
