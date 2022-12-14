@@ -13,7 +13,6 @@ app.use('/api', require('./api'));
 app.use('/rss', require('./rss'));
 
 if (fs.existsSync(path.join(__dirname, '..', 'purpose.md'))) {
-  console.log('It Existed')
   const html = fs.readFileSync(path.join(__dirname, '..', 'resources', 'plain.html'), 'utf8')
   const body = fs.readFileSync(path.join(__dirname, '..', 'purpose.md'), 'utf8') +
       '\n\n## [Go to root page](/welcome_home)\n';

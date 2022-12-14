@@ -9,8 +9,8 @@ const Archive = () => {
   return (
     <div className='textinfo'>
       <div class="archive-links">
-        <Link to='/rss'>RSS</Link>
-        &#20;▴ <Link to='/rss/mobile'>RSS (mobile scroll)</Link> 
+        <a href='/rss'>RSS</a>
+        &#20;▴ <a href='/rss/mobile'>RSS (mobile scroll)</a>
         &#20;▴ <Link to='/subscribe'>Email Delivery</Link>
       </div>
       <table className='archive'>
