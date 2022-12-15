@@ -4,6 +4,9 @@
 # compiled code
 /public/bundle.js*
 
+# secretsss
+.env
+
 # misc
 .DS_Store
 *.pem

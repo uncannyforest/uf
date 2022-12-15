@@ -1,8 +1,11 @@
+require('dotenv').config();
+
 const express = require('express');
 const fs = require('fs');
 const { marked } = require('marked');
 const morgan = require('morgan');
 const path = require('path');
+const { db } = require('./db')
 
 const app = express();
 app.use(morgan('dev'));
@@ -29,4 +32,9 @@ app.get('*', (req, res) => {
 
 const port = process.env.PORT || 3000
 
-app.listen(port, () => console.log(`Server up and running on port ${port}!`));
+const start = async () => {
+  await db.sync({ alter: true });
+  app.listen(port, () => console.log(`Server up and running on port ${port}!`));
+}
+
+start();
