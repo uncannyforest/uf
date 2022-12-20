@@ -11,6 +11,10 @@ router.get('/:id/comments', async (req, res, next) => {
     const comments = await Comment.findAll({
       where: {
         paperId: req.params.id
+      },
+      include: {
+        model: User,
+        attributes: ['id', 'name', 'url']
       }
     })
     res.json(comments);

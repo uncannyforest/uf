@@ -6,16 +6,30 @@ const requireToken = require('./requireToken');
 const router = express.Router();
 
 // POST /api/user
+// for registration
 router.post('/', async (req, res, next) => {
   try {
-    if (!req.body.name)
-      return res.status(400).send('Body must contain field "name"');
+    if (!req.body.email || !req.body.password || !req.body.name)
+      return res.status(400).send('Body must contain fields "email," "password," and "name"');
     const user = await User.create({
+      email: req.body.email,
+      password: req.body.password,
       name: req.body.name,
-      url: req.body.name
+      url: req.body.url
     })
-    const token = await user.generateToken();
-    res.send(token);
+    res.json(await User.authenticate(req.body));
+  } catch (e) {
+    next(e);
+  }
+})
+
+// POST /api/user/set/
+// for login
+router.post('/set/', async (req, res, next) => {
+  try {
+    if (!req.body.email || !req.body.password)
+      return res.status(400).send('Body must contain fields "email" and "password"');
+    res.json(await User.authenticate(req.body));
   } catch (e) {
     next(e);
   }
@@ -36,7 +50,7 @@ router.put('/', requireToken, async (req, res, next) => {
 
 // GET /api/user
 router.get('/', requireToken, (req, res) => {
-  res.json(req.user);
+  res.json(req.user.minusPassword());
 })
 
 // GET /api/user/comments
