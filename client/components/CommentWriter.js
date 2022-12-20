@@ -4,19 +4,23 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import Login from './Login'
+import { logOutUser } from '../store/auth'
 
 class CommentWriter extends React.Component {
   constructor(props) {
     super(props)
 
-    this.form = React.createRef();
+    this.form = React.createRef()
 
     this.state = {
+      logInAtDisplayName: false,
       logInToComment: false
     }
 
     this.formIsSubmitting = this.formIsSubmitting.bind(this)
     this.submitComment = this.submitComment.bind(this)
+    this.logInAtDisplayName = this.logInAtDisplayName.bind(this)
+    this.logOut = this.logOut.bind(this)
   }
 
   async formIsSubmitting(e) {
@@ -37,14 +41,34 @@ class CommentWriter extends React.Component {
     })
   }
 
+  logInAtDisplayName(e) {
+    e.preventDefault()
+    this.setState({
+      logInAtDisplayName: true
+    })
+  }
+
+  logOut(e) {
+    e.preventDefault()
+    this.setState({
+      logInAtDisplayName: false
+    })
+    this.props.logOutUser()
+  }
+
   render() {
     return (
       <div className='comment-writer'>
+        <div className='user-name-area'>
+        { this.props.user
+          ? <><div className='user-name'>{this.props.user.name}</div>
+              <div className='log-in'><a href='#' onClick={this.logOut}>Log out</a></div></>
+          : this.state.logInAtDisplayName
+          ? <Login instructions='Enter an email and password to log in.' />
+          : <div className='log-in'><a href='#' onClick={this.logInAtDisplayName}>Log in for display name</a></div>
+        }
+        </div>
         <form onSubmit={this.formIsSubmitting} ref={this.form}>
-          { this.props.user
-            ? <div className="userName">{this.props.user.name}</div>
-            : null
-          }
           <div className='textarea'>
             <textarea id='text' name='text' rows='3' />
           </div>
@@ -63,4 +87,8 @@ const mapState = (state) => ({
   user: state.auth.user
 })
 
-export default connect(mapState)(withRouter(CommentWriter))
+const mapDispatch = (dispatch) => ({
+  logOutUser: () => dispatch(logOutUser())
+})
+
+export default connect(mapState, mapDispatch)(withRouter(CommentWriter))
