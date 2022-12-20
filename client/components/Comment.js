@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 import CommentWriter from './CommentWriter'
 
@@ -17,7 +17,7 @@ const Comment = (props) => {
         { props.data.children.map(comment => <Comment key={comment.id} data={comment} />) }
       </div>
     </div>
-  );
+  )
 }
 
-export default Comment;
+export default Comment

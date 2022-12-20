@@ -1,15 +1,15 @@
-import axios from 'axios';
-import React from 'react';
-import Compass from './Compass';
+import axios from 'axios'
+import React from 'react'
+import Compass from './Compass'
 
-import { mobile, desktop } from '../../lib/imagePaths';
-import uncannyforest from '../uncannyforest';
+import { mobile, desktop } from '../../lib/imagePaths'
+import uncannyforest from '../uncannyforest'
 
 const Comics = (props) => {
-  const totalComics = uncannyforest.getNumComics();
-  let id = parseInt(props.match.params.id);
-  if (isNaN(id)) id = uncannyforest.getNumComics() - 1;
-  const comic = uncannyforest.getComics()[id];
+  const totalComics = uncannyforest.getNumComics()
+  let id = parseInt(props.match.params.id)
+  if (isNaN(id)) id = uncannyforest.getNumComics() - 1
+  const comic = uncannyforest.getComics()[id]
 
   return <>
     <Compass comicId={id} numComics={totalComics}/>
@@ -26,7 +26,7 @@ const Comics = (props) => {
         </div>
       </div>
     <Compass comicId={id} numComics={totalComics}/>
-  </>;
+  </>
 }
 
-export default Comics;
+export default Comics

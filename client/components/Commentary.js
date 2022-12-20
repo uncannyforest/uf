@@ -1,12 +1,12 @@
-import axios from 'axios';
-import React from 'react';
+import axios from 'axios'
+import React from 'react'
 
 import Comment from './Comment'
 import CommentWriter from './CommentWriter'
 
 class Commentary extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       commentsById: {},
@@ -15,27 +15,27 @@ class Commentary extends React.Component {
   }
 
   async update() {
-    const { data } = await axios.get(`/api/papers/${this.props.match.params.id}/comments`);
-    const commentsById = {};
-    const topLevelComments = [];
+    const { data } = await axios.get(`/api/papers/${this.props.match.params.id}/comments`)
+    const commentsById = {}
+    const topLevelComments = []
     data.forEach((comment) => {
-      commentsById[comment.id] = comment;
-      comment.children = [];
-    });
+      commentsById[comment.id] = comment
+      comment.children = []
+    })
     data.forEach((comment) => {
       if (comment.parentId)
-        commentsById[comment.parentId].children.push(comment);
+        commentsById[comment.parentId].children.push(comment)
       else
-        topLevelComments.push(comment);
+        topLevelComments.push(comment)
     })
-    this.setState({ commentsById, topLevelComments });
+    this.setState({ commentsById, topLevelComments })
   }
 
   componentDidMount() { return this.update(); }
 
   componentDidUpdate(prevProps) {
     if (prevProps.match.params.id !== this.props.match.params.id)
-      return this.update();
+      return this.update()
   }
 
   render() {
@@ -55,4 +55,4 @@ class Commentary extends React.Component {
   }
 }
 
-export default Commentary;
+export default Commentary

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 class HeaderLight extends React.Component {
@@ -12,8 +12,8 @@ class HeaderLight extends React.Component {
           </h2>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default HeaderLight;
+export default HeaderLight

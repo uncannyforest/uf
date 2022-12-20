@@ -2,8 +2,8 @@ import React from 'react'
 import CompassButton from './CompassButton'
 
 const Compass = ({ comicId, numComics }) => {
-  const existsPrev = comicId > 0;
-  const existsNext = comicId < numComics - 1;
+  const existsPrev = comicId > 0
+  const existsNext = comicId < numComics - 1
   const linkFirst = "/0"
   const linkPrev = `/${comicId - 1}`
   const linkNext = `/${comicId + 1}`
@@ -18,8 +18,8 @@ const Compass = ({ comicId, numComics }) => {
       <CompassButton icon='next' selected={!existsNext} url={linkNext} />
       <CompassButton icon='last' selected={!existsNext} url={linkLast} />
     </div>
-  );
+  )
 }
 
 
-export default Compass;
+export default Compass

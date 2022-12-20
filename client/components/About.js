@@ -1,4 +1,4 @@
-import { marked } from 'marked';
+import { marked } from 'marked'
 import React from 'react'
 
 import about from '../../config/about.yaml'
@@ -15,4 +15,4 @@ const About = () => {
   `}} />
 }
 
-export default About;
+export default About

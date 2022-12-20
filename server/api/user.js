@@ -1,25 +1,25 @@
-const express = require('express');
+const express = require('express')
 
-const { User, Comment } = require ('../db');
-const requireToken = require('./requireToken');
+const { User, Comment } = require ('../db')
+const requireToken = require('./requireToken')
 
-const router = express.Router();
+const router = express.Router()
 
 // POST /api/user
 // for registration
 router.post('/', async (req, res, next) => {
   try {
     if (!req.body.email || !req.body.password || !req.body.name)
-      return res.status(400).send('Body must contain fields "email," "password," and "name"');
+      return res.status(400).send('Body must contain fields "email," "password," and "name"')
     const user = await User.create({
       email: req.body.email,
       password: req.body.password,
       name: req.body.name,
       url: req.body.url
     })
-    res.json(await User.authenticate(req.body));
+    res.json(await User.authenticate(req.body))
   } catch (e) {
-    next(e);
+    next(e)
   }
 })
 
@@ -28,10 +28,10 @@ router.post('/', async (req, res, next) => {
 router.post('/set/', async (req, res, next) => {
   try {
     if (!req.body.email || !req.body.password)
-      return res.status(400).send('Body must contain fields "email" and "password"');
-    res.json(await User.authenticate(req.body));
+      return res.status(400).send('Body must contain fields "email" and "password"')
+    res.json(await User.authenticate(req.body))
   } catch (e) {
-    next(e);
+    next(e)
   }
 })
 
@@ -41,16 +41,16 @@ router.put('/', requireToken, async (req, res, next) => {
     const user = await req.user.update({
       name: req.body.name,
       url: req.body.url
-    });
-    res.json(user);
+    })
+    res.json(user)
   } catch (e) {
-    next(e);
+    next(e)
   }
 })
 
 // GET /api/user
 router.get('/', requireToken, (req, res) => {
-  res.json(req.user.minusPassword());
+  res.json(req.user.minusPassword())
 })
 
 // GET /api/user/comments
@@ -65,11 +65,11 @@ router.get('/comments', requireToken, async (req, res, next) => {
         model: Comment,
         as: 'children'
       }
-    });
-    res.json(comments);
+    })
+    res.json(comments)
   } catch (e) {
-    next(e);
+    next(e)
   }
 })
 
-module.exports = router;
+module.exports = router

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import HeaderLink from './HeaderLink'
 
 class Header extends React.Component {
@@ -13,8 +13,8 @@ class Header extends React.Component {
           <HeaderLink name='about' url='/about' locations={['/about']} />
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Header;
+export default Header

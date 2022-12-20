@@ -1,5 +1,5 @@
-const webpack = require('webpack');
-const path = require('path');
+const webpack = require('webpack')
+const path = require('path')
 
 const config = {
   entry: './client/index.js',
@@ -22,6 +22,6 @@ const config = {
       }
     ]
   }
-};
+}
 
-module.exports = config;
+module.exports = config

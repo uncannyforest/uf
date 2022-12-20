@@ -14,35 +14,35 @@ const setCurrentUser = (user) => {
 }
 
 export const loadLoginState = () => async (dispatch) => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token')
   if (token) {
     axios.defaults.headers.common['Authorization'] = token
-    const { data } = await axios.get('/api/user/');
-    dispatch(setCurrentUser(data));
+    const { data } = await axios.get('/api/user/')
+    dispatch(setCurrentUser(data))
   } else {
     delete axios.defaults.headers.common['Authorization']
-    dispatch(setCurrentUser({}));
+    dispatch(setCurrentUser({}))
   }
-};
+}
 
 export const registerUser = (userData) => async (dispatch) => {
-  const { data } = await axios.post('/api/users/register', userData);
-  axios.defaults.headers.common['Authorization'] = data.token;
-  localStorage.setItem('token', data.token);
-  dispatch(setCurrentUser(data.user));
-};
+  const { data } = await axios.post('/api/users/register', userData)
+  axios.defaults.headers.common['Authorization'] = data.token
+  localStorage.setItem('token', data.token)
+  dispatch(setCurrentUser(data.user))
+}
 
 
 export const logInUser = (userData) => async (dispatch) => {
-  const { data } = await axios.post('/api/users/set', userData);
-  axios.defaults.headers.common['Authorization'] = data.token;
-  localStorage.setItem('token', data.token);
-  dispatch(setCurrentUser(data.user));
-};
+  const { data } = await axios.post('/api/users/set', userData)
+  axios.defaults.headers.common['Authorization'] = data.token
+  localStorage.setItem('token', data.token)
+  dispatch(setCurrentUser(data.user))
+}
 
 export const logOutUser = () => (dispatch) => {
   localStorage.removeItem('token')
-  delete axios.defaults.headers.common['Authorization'];
+  delete axios.defaults.headers.common['Authorization']
   dispatch(setCurrentUser({}))
 }
 

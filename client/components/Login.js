@@ -1,5 +1,5 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
 
 import { logInUser } from '../store/auth'
 
@@ -20,12 +20,12 @@ class Login extends React.Component {
           <button type='submit'>{this.props.submitText || 'Log in'}</button>
         </form>
       </div>
-    );
+    )
   }
 }
 
 const mapDispatch = (dispatch) => ({
   logInUser: (creds) => dispatch(logInUser(creds))
-});
+})
 
-export default connect(null, mapDispatch)(Login);
+export default connect(null, mapDispatch)(Login)

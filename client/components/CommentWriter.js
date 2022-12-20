@@ -1,5 +1,5 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
 
 class CommentWriter extends React.Component {
   render() {
@@ -10,12 +10,12 @@ class CommentWriter extends React.Component {
         </div>
         {this.props.hideSubmit ? null : <button type='submit'>Comment</button>}
       </form>
-    );
+    )
   }
 }
 
 const mapState = (state) => ({
   user: state.auth.user
-});
+})
 
-export default connect(mapState)(CommentWriter);
+export default connect(mapState)(CommentWriter)

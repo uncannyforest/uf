@@ -1,8 +1,8 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const Sequelize = require('sequelize');
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const Sequelize = require('sequelize')
 
-const db = require('../db');
+const db = require('../db')
 
 const User = db.define('user', {
   email: {
@@ -31,31 +31,31 @@ const User = db.define('user', {
       isUrl: true,
     }
   },
-});
+})
 
 User.beforeCreate(async (user) => {
-  user.password = await bcrypt.hash(user.password, 10);
+  user.password = await bcrypt.hash(user.password, 10)
 })
 
 User.beforeUpdate(async (user) => {
   if (user.changed('password')) {
-    user.password = await bcrypt.hash(user.password, 10);
+    user.password = await bcrypt.hash(user.password, 10)
   }
-});
+})
 
 User.prototype.generateToken = function() {
-  return jwt.sign({ id: this.id }, process.env.JWT);
+  return jwt.sign({ id: this.id }, process.env.JWT)
 }
 
 User.byToken = async function(token) {
-  const payload = jwt.verify(token, process.env.JWT);
+  const payload = jwt.verify(token, process.env.JWT)
   if (payload) {
-    const user = await User.findByPk(payload.id);
-    if (user) return user;
+    const user = await User.findByPk(payload.id)
+    if (user) return user
   }
-  const error = Error('Bad credentials');
-  error.status = 401;
-  throw error;
+  const error = Error('Bad credentials')
+  error.status = 401
+  throw error
 }
 
 User.authenticate = async function({ email, password }) {
@@ -65,26 +65,26 @@ User.authenticate = async function({ email, password }) {
     }
   })
   if (!user) {
-    const error = Error('No user with that email');
-    error.status = 404;
-    throw error;
+    const error = Error('No user with that email')
+    error.status = 404
+    throw error
   }
   if (! await bcrypt.compare(password, user.password)) {
-    const error = Error('Bad credentials');
-    error.status = 401;
-    throw error;
+    const error = Error('Bad credentials')
+    error.status = 401
+    throw error
   }
   return {
     token: user.generateToken(),
     user: user.minusPassword()
-  };
+  }
 }
 
 User.prototype.minusPassword = function() {
   return {
     ...this.dataValues,
     password: undefined
-  };
+  }
 }
 
-module.exports = User;
+module.exports = User

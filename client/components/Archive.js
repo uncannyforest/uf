@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import strftime from 'strftime'
@@ -25,7 +25,7 @@ const Archive = () => {
         </tbody>
       </table>
     </div>
-  );
+  )
 }
 
-export default Archive;
+export default Archive

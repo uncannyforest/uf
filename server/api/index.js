@@ -1,12 +1,12 @@
-const express = require('express');
+const express = require('express')
 
-const router = express.Router();
+const router = express.Router()
 
-router.use('/user', require('./user'));
-router.use('/papers', require('./papers'));
+router.use('/user', require('./user'))
+router.use('/papers', require('./papers'))
 
 router.use('*', (req, res) => {
-  res.sendStatus(404);
+  res.sendStatus(404)
 })
 
-module.exports = router;
+module.exports = router
