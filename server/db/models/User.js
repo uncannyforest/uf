@@ -61,7 +61,7 @@ User.byToken = async function(token) {
 User.authenticate = async function({ email, password }) {
   const user = await User.findOne({
     where: {
-      email: email,
+      email: email
     }
   })
   if (!user) {

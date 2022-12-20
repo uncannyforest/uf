@@ -114,7 +114,7 @@ img.comic-nav {
   }
 }
 
-.plains form {
+.plains .comment-writer {
   margin: 30px;
   background-color: #e0e4e8;
   padding: 10px;
@@ -130,8 +130,21 @@ button {
   padding: 0 10px;
   height: 1.75em;
   vertical-align: middle;
-  margin: 10px 0 0 auto;
-  display: block;
+}
+button:focus {
+  outline: 2px solid #000000;
+}
+textarea, input[type="text"], input[type="password"] {
+  border: 2px solid #a0a8b0;
+  border-radius: 4px;
+  outline: none;
+  font-size: .9em;
+}
+input[type="text"], input[type="password"] {
+  height: 1.75rem;
+}
+textarea:focus, input[type="text"]:focus, input[type="password"]:focus {
+  border-color: #60a080;
 }
 
 .plains .textarea {
@@ -140,23 +153,44 @@ button {
 
 .plains textarea {
   flex: 1;
-  background-color: #e0e4e8;
-  border-width: 2px;
-  border-radius: 4px;
-  outline: none;
+  background: rgba(0, 0, 0, 0);
+  font-family: serif;
+  font-size: 1em;
 }
-.plains textarea:focus {
-  border-color: #000;
-}
-.plains button {
+.plains .comment-button {
+  margin: 10px 0 0 auto;
   display: block;
   transition: opacity .3s ease-in, margin-top .3s ease-out, height .3s ease-out;
 }
-.plains:not(:focus-within) button {
+.plains:not(:focus-within) .comment-button {
   height: 0;
   opacity: 0;
   margin: 0 0 0 auto;
   transition: opacity .3s ease-out, margin-top .3s ease-in, height .3s ease-in;
+}
+
+.login .instructions {
+  margin: 5px 0;
+}
+.login form {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+.login .labeled-input {
+  flex: 1;
+}
+.labeled-input label {
+  font-size: .8em;
+  text-transform: uppercase;
+  display: block;
+}
+.labeled-input:focus-within {
+  color: #508068;
+}
+.login input {
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .userName {
