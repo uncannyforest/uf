@@ -1,15 +1,24 @@
 import axios from 'axios'
 
 const SET_CURRENT_USER = 'SET_CURRENT_USER'
+const SET_ERROR = 'SET_ERROR'
 
 const initialState = {
-  user: null
+  user: null,
+  error: null
 }
 
 const setCurrentUser = (user) => {
   return {
     type: SET_CURRENT_USER,
     payload: user
+  }
+}
+
+const setError = (error) => {
+  return {
+    type: SET_ERROR,
+    payload: error
   }
 }
 
@@ -26,19 +35,27 @@ export const loadLoginState = () => async (dispatch) => {
 }
 
 export const registerUser = (creds, thenDo) => async (dispatch) => {
-  const { data } = await axios.post('/api/user', creds)
-  axios.defaults.headers.common['Authorization'] = data.token
-  localStorage.setItem('token', data.token)
-  dispatch(setCurrentUser(data.user))
-  if (thenDo) thenDo(data.user);
+  try {
+    const { data } = await axios.post('/api/user', creds)
+    axios.defaults.headers.common['Authorization'] = data.token
+    localStorage.setItem('token', data.token)
+    dispatch(setCurrentUser(data.user))
+    if (thenDo) thenDo(data.user)
+  } catch (e) {
+    dispatch(setError(e.response))
+  }
 }
 
 export const logInUser = (creds, thenDo) => async (dispatch) => {
-  const { data } = await axios.post('/api/user/set', creds)
-  axios.defaults.headers.common['Authorization'] = data.token
-  localStorage.setItem('token', data.token)
-  dispatch(setCurrentUser(data.user))
-  if (thenDo) thenDo(data.user);
+  try {
+    const { data } = await axios.post('/api/user/set', creds)
+    axios.defaults.headers.common['Authorization'] = data.token
+    localStorage.setItem('token', data.token)
+    dispatch(setCurrentUser(data.user))
+    if (thenDo) thenDo(data.user);
+  } catch (e) {
+    dispatch(setError(e.response))
+  }
 }
 
 export const logOutUser = () => (dispatch) => {
@@ -52,7 +69,13 @@ export default function (state = initialState, action) {
     case SET_CURRENT_USER:
       return {
         ...state,
-        user: action.payload,
+        error: null, // reset error
+        user: action.payload
+      }
+    case SET_ERROR:
+      return {
+        ...state,
+        error: action.payload
       }
     default:
       return state
