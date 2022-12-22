@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom'
 
 import Login from './Login'
 import { logOutUser } from '../store/auth'
+import { postComment } from '../store/commentary'
 
 class CommentWriter extends React.Component {
   constructor(props) {
@@ -34,10 +35,11 @@ class CommentWriter extends React.Component {
     }
   }
 
-  async submitComment(user) {
-    const { data } = await axios.post(`/api/papers/${this.props.match.params.id}/comments`, {
+  submitComment(user) {
+    return this.props.postComment({
       text: this.form.current.text.value,
-      userId: user.id
+      userId: user.id,
+      paperId: this.props.match.params.id
     })
   }
 
@@ -88,7 +90,8 @@ const mapState = (state) => ({
 })
 
 const mapDispatch = (dispatch) => ({
-  logOutUser: () => dispatch(logOutUser())
+  logOutUser: () => dispatch(logOutUser()),
+  postComment: (comment) => dispatch(postComment(comment))
 })
 
 export default connect(mapState, mapDispatch)(withRouter(CommentWriter))

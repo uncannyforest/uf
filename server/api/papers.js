@@ -11,10 +11,6 @@ router.get('/:id/comments', async (req, res, next) => {
     const comments = await Comment.findAll({
       where: {
         paperId: req.params.id
-      },
-      include: {
-        model: User,
-        attributes: ['id', 'name', 'url']
       }
     })
     res.json(comments)
@@ -43,7 +39,7 @@ router.post('/:id/comments', requireToken, async (req, res, next) => {
       text: req.body.text,
       parentId: req.body.parentId
     })
-    res.json(comment)
+    res.json(await Comment.findByPk(comment.id))
   } catch (e) {
     next(e)
   }

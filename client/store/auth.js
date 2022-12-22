@@ -8,19 +8,15 @@ const initialState = {
   error: null
 }
 
-const setCurrentUser = (user) => {
-  return {
-    type: SET_CURRENT_USER,
-    payload: user
-  }
-}
+const setCurrentUser = (user) => ({
+  type: SET_CURRENT_USER,
+  payload: user
+})
 
-const setError = (error) => {
-  return {
-    type: SET_ERROR,
-    payload: error
-  }
-}
+const setError = (error) => ({
+  type: SET_ERROR,
+  payload: error
+})
 
 export const loadLoginState = () => async (dispatch) => {
   const token = localStorage.getItem('token')
