@@ -153,10 +153,13 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus {
 
 .plains textarea {
   flex: 1;
-  background: rgba(0, 0, 0, 0);
   font-family: serif;
   font-size: 1em;
 }
+.plains textarea, .plains input[type="text"], .plains input[type="password"] {
+  background: rgba(255, 255, 255, .5);
+}
+
 .plains .comment-button {
   margin: 10px 0 0 auto;
   display: block;
