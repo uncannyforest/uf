@@ -36,11 +36,12 @@ class CommentWriter extends React.Component {
   }
 
   submitComment(user) {
-    return this.props.postComment({
+    this.props.postComment({
       text: this.form.current.text.value,
       userId: user.id,
       paperId: this.props.match.params.id
     })
+    this.form.current.text.value = ''
   }
 
   logInAtDisplayName(e) {
