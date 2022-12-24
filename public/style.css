@@ -114,12 +114,6 @@ img.comic-nav {
   }
 }
 
-.plains .comment-writer {
-  margin: 30px;
-  background-color: #e0e4e8;
-  padding: 10px;
-}
-
 button {
   background-color: #508068;
   color: #ffffff;
@@ -222,11 +216,19 @@ form #display-name {
   height: 2rem;
   padding-top: 3px;
 }
+.plains a {
+  color: #307050;
+}
 
-.plains .comment-body {
-  margin: 30px;
-  background-color: #e0e4e8;
-  padding: 10px;
+.plains .comment-writer {
+  margin-top: 12.5px;
+}
+
+.plains .comment-body, .plains .comment-writer {
+  border-image: url('/images/comment.png') stretch;
+  border-image-slice: 62.5 125 fill;
+  border-image-width: 25px 50px;
+  padding: 27.5px 40px;
 }
 
 .plains .children {
