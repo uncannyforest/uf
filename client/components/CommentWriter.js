@@ -24,6 +24,10 @@ class CommentWriter extends React.Component {
     this.logOut = this.logOut.bind(this)
   }
 
+  componentDidMount() {
+    if (this.props.parent) this.form.current.text.focus()
+  }
+
   async formIsSubmitting(e) {
     e.preventDefault()
     if (this.props.user) {
@@ -39,9 +43,11 @@ class CommentWriter extends React.Component {
     this.props.postComment({
       text: this.form.current.text.value,
       userId: user.id,
-      paperId: this.props.match.params.id
+      paperId: this.props.match.params.id,
+      parentId: this.props.parent
     })
     this.form.current.text.value = ''
+    if (this.props.onSubmit) this.props.onSubmit()
   }
 
   logInAtDisplayName(e) {
