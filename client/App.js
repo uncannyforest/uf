@@ -10,6 +10,7 @@ import Comics from './components/Comics'
 import Archive from './components/Archive'
 import About from './components/About'
 import Commentary from './components/Commentary'
+import Profile from './components/Profile'
 
 import about from '../config/about.yaml'
 import email from '../resources/email.html'
@@ -39,6 +40,7 @@ class App extends React.Component {
               <div className='sparse'
                 dangerouslySetInnerHTML={{__html: marked.parse(about.email) + email}} />
             </Route>
+            <Route path='/profile' component={Profile} />
             <Route path='/:id(\d+)' component={Comics} />
             <Route exact path={['/welcome_home', '/']} component={Comics} />
           </Switch>

@@ -42,7 +42,7 @@ router.put('/', requireToken, async (req, res, next) => {
       name: req.body.name,
       url: req.body.url
     })
-    res.json(user)
+    res.json(user.minusPassword())
   } catch (e) {
     next(e)
   }

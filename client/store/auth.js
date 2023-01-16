@@ -60,6 +60,17 @@ export const logOutUser = () => (dispatch) => {
   dispatch(setCurrentUser(null))
 }
 
+export const updateUser = (user) => async (dispatch) => {
+  try {
+    console.log(user)
+    const { data } = await axios.put('/api/user', user)
+    dispatch(setCurrentUser(data))
+  } catch (e) {
+    console.log(e)
+    dispatch(setError(e.response))
+  }
+}
+
 export default function (state = initialState, action) {
   switch (action.type) {
     case SET_CURRENT_USER:

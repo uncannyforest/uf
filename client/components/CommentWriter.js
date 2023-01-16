@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 import Login from './Login'
 import { logOutUser } from '../store/auth'
@@ -70,7 +70,7 @@ class CommentWriter extends React.Component {
       <div className='comment-writer'>
         <div className='user-name-area'>
         { this.props.user
-          ? <><div className='user-name'>{this.props.user.name}</div>
+          ? <><div className='user-name'><Link to='/profile'>{this.props.user.name}</Link></div>
               <div className='log-in'><a href='#' onClick={this.logOut}>Log out</a></div></>
           : this.state.logInAtDisplayName
           ? <Login instructions='Enter an email and password to log in.' />
