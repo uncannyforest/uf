@@ -9,12 +9,7 @@ npm run start
 
 These last two commands should be run in separate terminals.
 
-To run for production:
-```bash
-npm i
-npm run build-prod
-npm run start-prod
-```
+Production uses `pm2` to run. View the logs at `/home/node/.pm2/logs/`.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the site.
 
