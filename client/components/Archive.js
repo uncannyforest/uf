@@ -18,7 +18,7 @@ const Archive = () => {
           {uncannyforest.getComics().map((comic, index) => (
             <tr key={index}>
               <td className='index'>{index}</td>
-              <td className='also'>{strftime('%Y %b %-d', new Date(comic.date)).toUpperCase()}</td>
+              <td className='also'>{strftime.timezone(0)('%Y %b %-d', new Date(comic.date)).toUpperCase()}</td>
               <td><Link to={`/${index}`}>{comic.title}</Link></td>
             </tr>
           )).reverse()}
