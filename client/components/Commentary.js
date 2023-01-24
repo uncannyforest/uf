@@ -11,10 +11,8 @@ class Commentary extends React.Component {
     super(props);
 
     this.state = {
-      overrideShowComments: false
+      showComments: null
     }
-
-    this.toggleComments = this.toggleComments.bind(this)
   }
 
   componentDidMount() {
@@ -26,19 +24,23 @@ class Commentary extends React.Component {
       this.props.loadComments(this.props.match.params.id)
   }
 
-  toggleComments(e) {
-    e.preventDefault();
-    this.setState({ overrideShowComments: !this.state.overrideShowComments })
+  toggleComments(on) {
+    return ((e) => {
+      e.preventDefault();
+      this.setState({ showComments: on })
+    }).bind(this)
   }
 
   render() {
-    if (this.props.topLevelComments.length === 0 && !this.state.overrideShowComments) {
+    let noComments = this.props.topLevelComments.length === 0;
+
+    if (noComments && !this.state.showComments || this.state.showComments === false) {
       return (
         <div className='plains'>
           <a name='commentary' />
-          <a href='#' onClick={this.toggleComments}>
+          <a href='#' onClick={this.toggleComments(true)}>
             <div className='commentary-off'>
-              <img src='/images/commentary-write-2x.png' className='flashlight-off-msg'/>
+              <img src={`/images/commentary-${noComments ? 'write' : 'show'}-2x.png`} className='flashlight-off-msg'/>
               <img src='/images/flashlight-off-2x.png' className='flashlight-off'/>
             </div>
           </a>
@@ -50,7 +52,9 @@ class Commentary extends React.Component {
       <div className='plains'>
         <a name='commentary' />
         <div className='forest-boundary'>
-          <img src='/images/flashlight-on-2x.png' className='hf'/>
+          <a href='#' onClick={this.toggleComments(false)}>
+            <img src='/images/flashlight-on-2x.png' className='hf'/>
+          </a>
           <CommentWriter />
           <div className='comments'>
             {this.props.topLevelComments.map(comment => <Comment key={comment.id} data={comment} />)}
