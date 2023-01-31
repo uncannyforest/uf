@@ -1,5 +1,6 @@
 require('dotenv').config()
 
+const cors = require('cors')
 const express = require('express')
 const fs = require('fs')
 const { marked } = require('marked')
@@ -9,6 +10,7 @@ const { db } = require('./db')
 
 const app = express()
 app.use(morgan('dev'))
+app.use(cors({ origin: [/\.uncannyforest\.com$/, /\.tumblr\.com$/, /\.txmblr\.com$/] }))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
