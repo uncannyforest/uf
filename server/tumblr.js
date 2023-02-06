@@ -61,18 +61,25 @@ const getLatestPostByTag = async (tag) => {
 }
 
 const getTagNavForPost = async (tag, postId) => {
+  let result
+
   // refresh cache if tag missing
   if (!cache[tag]) {
     addToCache(tag, await findPostsByTag(tag))
-    return cache[tag].nav[postId]
+    result = cache[tag].nav[postId]
+  } else {
+    const maybeResult = cache[tag].nav[postId]
+    if (maybeResult && maybeResult.newer) result = maybeResult
+
+    // refresh cache if post missing or newest
+    addToCache(tag, await findPostsByTag(tag))
+    result = cache[tag].nav[postId]
   }
 
-  const result = cache[tag].nav[postId]
-  if (result && result.newer) return result
-
-  // refresh cache if post missing or newest
-  addToCache(tag, await findPostsByTag(tag))
-  return cache[tag].nav[postId]
+  result.newest = cache[tag].newest
+  result.oldest = cache[tag].oldest
+  result.random = cache[tag].posts[Math.floor(Math.random() * cache[tag].posts.length)]
+  return result
 }
 
 module.exports = {
