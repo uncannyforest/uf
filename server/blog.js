@@ -3,8 +3,8 @@ const { getLatestPostByTag } = require('./tumblr')
 
 const router = express.Router()
 
-// GET /blog/latest/:tag
-router.get('/latest/:tag', async (req, res, next) => {
+// GET /blog/tag/:tag/latest
+router.get('/tag/:tag/latest', async (req, res, next) => {
   try {
     const post = await getLatestPostByTag(req.params.tag)
 

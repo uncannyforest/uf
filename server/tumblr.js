@@ -7,7 +7,7 @@ const client = tumblr.createClient({
 
 const UF = 'uncannyforest'
 
-const postCache = {}
+const cache = {}
 
 const addToCache = (tag, posts) => {
   let newer = posts[0]
@@ -27,7 +27,7 @@ const addToCache = (tag, posts) => {
     newer = older
   }
   entry.oldest = newer
-  postCache[tag] = entry
+  cache[tag] = entry
 
   console.log(`Updated cache tag ${tag}:`, entry)
 }
@@ -55,13 +55,27 @@ const findPostsByTag = async (tag) => {
 }
 
 const getLatestPostByTag = async (tag) => {
-  const posts = await findPostsByTag(tag)
+  addToCache(tag, await findPostsByTag(tag))
 
-  addToCache(tag, posts)
+  return cache[tag].newest
+}
 
-  return postCache[tag].newest
+const getTagNavForPost = async (tag, postId) => {
+  // refresh cache if tag missing
+  if (!cache[tag]) {
+    addToCache(tag, await findPostsByTag(tag))
+    return cache[tag].nav[postId]
+  }
+
+  const result = cache[tag].nav[postId]
+  if (result && result.newer) return result
+
+  // refresh cache if post missing or newest
+  addToCache(tag, await findPostsByTag(tag))
+  return cache[tag].nav[postId]
 }
 
 module.exports = {
-  getLatestPostByTag
+  getLatestPostByTag,
+  getTagNavForPost
 }
