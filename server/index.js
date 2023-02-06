@@ -15,6 +15,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 app.use('/api', require('./api'))
+app.use('/blog', require('./blog'))
 app.use('/rss', require('./rss'))
 
 if (fs.existsSync(path.join(__dirname, '..', 'purpose.md'))) {

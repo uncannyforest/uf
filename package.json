@@ -27,6 +27,7 @@
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.27.0",
+    "tumblr.js": "^3.0.0",
     "xml2js": "^0.4.23"
   },
   "devDependencies": {
