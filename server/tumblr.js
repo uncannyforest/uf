@@ -44,7 +44,7 @@ const summarizePostData = (tag) => (post) => {
 
 const findPostsByTag = async (tag) => {
   let response = await client.blogPosts(UF, { tag })
-  const posts = response.posts.map(summarizePostData(tag))
+  let posts = response.posts.map(summarizePostData(tag))
   if (response.total_posts > 20) {
     for (let i = 20; i < response.total_posts; i++) {
       response = await client.blogPosts(UF, { tag: tag, offset: i })
