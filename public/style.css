@@ -58,6 +58,15 @@ a:hover {
 .textinfo {
   padding: 30px
 }
+.bio>p:last-of-type {
+  display: inline;
+}
+.bio span {
+  cursor: pointer;
+  font-size: 2em;
+  vertical-align: middle;
+  margin: 5px;
+}
 
 .compass {
   display: grid;
