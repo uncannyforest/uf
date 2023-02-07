@@ -32,10 +32,10 @@ const addToCache = (tag, posts) => {
   console.log(`Updated cache tag ${tag}:`, entry)
 }
 
-const summarizePostData = (post) => {
+const summarizePostData = (tag) => (post) => {
   return {
     id: post.id_string,
-    url: post.post_url,
+    url: `${post.post_url}?tag=${tag}`,
     timestamp: post.timestamp,
     summary: post.summary,
     notes: post.note_count
@@ -44,11 +44,11 @@ const summarizePostData = (post) => {
 
 const findPostsByTag = async (tag) => {
   let response = await client.blogPosts(UF, { tag })
-  const posts = response.posts.map(summarizePostData)
+  const posts = response.posts.map(summarizePostData(tag))
   if (response.total_posts > 20) {
     for (let i = 20; i < response.total_posts; i++) {
       response = await client.blogPosts(UF, { tag: tag, offset: i })
-      posts = posts.concat(response.posts.map(summarizePostData))
+      posts = posts.concat(response.posts.map(summarizePostData(tag)))
     }
   }
   return posts;
