@@ -46,7 +46,9 @@ const findPostsByTag = async (tag) => {
   let response = await client.blogPosts(UF, { tag })
   let posts = response.posts.map(summarizePostData(tag))
   if (response.total_posts > 20) {
-    for (let i = 20; i < response.total_posts; i++) {
+    console.log(`Total posts for tag ${tag}:`, response.total_posts)
+    for (let i = 20; i < response.total_posts; i += 20) {
+      console.log('Getting posts starting at #', i)
       response = await client.blogPosts(UF, { tag: tag, offset: i })
       posts = posts.concat(response.posts.map(summarizePostData(tag)))
     }
