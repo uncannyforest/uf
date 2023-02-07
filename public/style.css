@@ -1,6 +1,7 @@
 @font-face {
   font-family: "Anticursive";
-  src: url("/anticursive.otf") format("opentype");
+  src: url("/anticursive.woff") format("woff"),
+    url("/anticursive.otf") format("opentype");
 }
 
 body {
