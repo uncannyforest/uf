@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 @font-face {
   font-family: "Anticursive";
   src: url("/anticursive.woff") format("woff"),
@@ -8,8 +10,8 @@ body {
   background-color: #14142c;
   margin-top: 12px;
   margin-bottom: 12px;
-  font-family: serif;
-  font-size: 18px;
+  font-family: 'Crimson Pro', serif;
+  font-size: 20px;
   color: #14142c;
   letter-spacing: 0.3pt;
   line-height: 1.4;
