@@ -6,6 +6,42 @@
     url("/anticursive.otf") format("opentype");
 }
 
+:root {
+  --selected: url('data:image/svg+xml;utf8,\
+  <svg xmlns="http://www.w3.org/2000/svg">\
+    <filter id="recolor" color-interpolation-filters="sRGB">\
+      <feColorMatrix type="matrix" values="\
+        0 0 0 0 .375\
+        0 0 0 0 .625\
+        0 0 0 0 .5\
+        0 0 0 1 0\
+      "/>\
+    </filter>\
+  </svg> #recolor');
+  --hover: url('data:image/svg+xml;utf8,\
+  <svg xmlns="http://www.w3.org/2000/svg">\
+    <filter id="recolor" color-interpolation-filters="sRGB">\
+      <feColorMatrix type="matrix" values="\
+        0 0 0 0 .75\
+        0 0 0 0 .75\
+        0 0 0 0 0\
+        0 0 0 1 0\
+      "/>\
+    </filter>\
+  </svg> #recolor');
+  --click: url('data:image/svg+xml;utf8,\
+  <svg xmlns="http://www.w3.org/2000/svg">\
+    <filter id="recolor" color-interpolation-filters="sRGB">\
+      <feColorMatrix type="matrix" values="\
+        0 0 0 0 1\
+        0 0 0 0 .5\
+        0 0 0 0 0\
+        0 0 0 1 0\
+      "/>\
+    </filter>\
+  </svg> #recolor');
+}
+
 body {
   background-color: #14142c;
   margin-top: 12px;
@@ -43,7 +79,20 @@ a {
   text-decoration: none;
 }
 a:hover {
-  text-decoration: underline;
+  color: #c0c000;
+}
+a:focus {
+  color: #ff8000;
+}
+
+a.selected img {
+  filter: var(--selected);
+}
+a:not([href^='#']):hover img {
+  filter: var(--hover);
+}
+a:not([href^='#']):active img {
+  filter: var(--click);
 }
 
 .map {
