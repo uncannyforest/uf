@@ -95,6 +95,7 @@ a:not([href^='#']):active img {
 nav ul {
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   margin-top: 15px;
   margin-bottom: 15px;
