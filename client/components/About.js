@@ -10,8 +10,6 @@ const About = () => {
     ${marked.parse(about.me)}
     <h4>OTHERS</h4>
     ${marked.parse(about.friends)}
-    <h4>FOLLOW</h4>
-    ${marked.parse(about.follow)}
   `}} />
 }
 

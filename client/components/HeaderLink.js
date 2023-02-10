@@ -1,38 +1,26 @@
 import React from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-class HeaderLink extends React.Component {
-  navSelect() {
-    if (this.props.locations.includes(this.props.location.pathname)
-        || (this.props.orNumericLocation && /^\/([0-9])+$/.test(this.props.location.pathname)))
-      return 'selected'
-    else
-      return ''
-  }
-
-  render() {
-    if (this.props.externalUrl) {
-      return (
-        <div className='item'>
-          <div className='item'>
-            <a href={this.props.externalUrl} className={this.navSelect()}>
-              <img src={`/images/page-${this.props.name}-2x.png`} className='map-item' />
-            </a>
-          </div>
-        </div>
-      )
-    }
-
-    return (
-      <div className='item'>
-        <div className='item'>
-          <Link to={this.props.url} className={this.navSelect()}>
-            <img src={`/images/page-${this.props.name}-2x.png`} className='map-item' />
-          </Link>
-        </div>
-      </div>
-    )
-  }
+const link = (url, externalUrl, selected, content) => {
+  return externalUrl ? (
+    <a href={externalUrl} className={selected ? 'selected' : ''}>
+      {content}
+    </a>
+  ) : (
+    <Link to={url} className={selected ? 'selected' : ''}>
+      {content}
+    </Link>
+  )
 }
 
-export default withRouter(HeaderLink)
+const HeaderLink = ({ url, top, name, selected, externalUrl }) => {
+  return top ? (
+    <li>
+      {link(url, externalUrl, selected, <img src={`/images/page-${name}-2x.png`} />)}
+    </li>
+  ) : (
+    link(url, externalUrl, selected, <li>{name}</li>)
+  )
+}
+
+export default HeaderLink

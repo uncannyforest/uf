@@ -32,12 +32,16 @@ class App extends React.Component {
           <Switch>
             <Route path='/archive' component={Archive} />
             <Route path='/about' component={About} />
-            <Route path='/bio' >
+            <Route path='/bio'>
               <div className='textinfo bio'
                 dangerouslySetInnerHTML={{__html: marked.parse(about.uf_bio) +
                 `<span onclick='new Audio("/cloudpronunciation.m4a").play()'>🔈</span>`}} />
             </Route>
-            <Route path='/subscribe' >
+            <Route path='/subscribe-info'>
+              <div className='textinfo'
+                dangerouslySetInnerHTML={{__html: marked.parse(about.follow)}} />
+            </Route>
+            <Route path='/subscribe'>
               <div className='sparse'
                 dangerouslySetInnerHTML={{__html: marked.parse(about.email) + email}} />
             </Route>
