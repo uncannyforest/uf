@@ -102,6 +102,9 @@ nav ul {
 .map img {
   height: 30px;
 }
+.subheader {
+  justify-content: center;
+}
 .subheader a {
   font-family: 'Anticursive';
   font-size: 24px;
