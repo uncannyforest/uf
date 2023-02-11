@@ -7,8 +7,7 @@ import uncannyforest from '../uncannyforest'
 
 const Comics = (props) => {
   const totalComics = uncannyforest.getNumComics()
-  let id = parseInt(props.match.params.id)
-  if (isNaN(id)) id = uncannyforest.getNumComics() - 1
+  const id = props.getComicId()
   const comic = uncannyforest.getComics()[id]
 
   return <>

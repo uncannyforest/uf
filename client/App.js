@@ -15,8 +15,16 @@ import Profile from './components/Profile'
 import about from '../config/about.yaml'
 import email from '../resources/email.html'
 import { loadLoginState } from './store/auth'
+import uncannyforest from './uncannyforest'
 
 class App extends React.Component {
+  getComicId() {
+    const totalComics = uncannyforest.getNumComics()
+    let id = parseInt(this.match.params.id)
+    if (isNaN(id)) id = totalComics - 1
+    return id
+  }
+
   componentDidMount() {
     this.props.loadLoginState()
   }
@@ -46,14 +54,14 @@ class App extends React.Component {
                 dangerouslySetInnerHTML={{__html: marked.parse(about.email) + email}} />
             </Route>
             <Route path='/profile' component={Profile} />
-            <Route path='/:id(\d+)' component={Comics} />
-            <Route exact path={['/welcome_home', '/']} component={Comics} />
+            <Route path='/:id(\d+|welcome_home|)'
+              render={(props) => <Comics getComicId={this.getComicId} {...props} />} />
           </Switch>
           <Footer />
         </div>
         <Switch>
-        <Route path='/:id(\d+)' component={Commentary} />
-        <Route exact path={['/welcome_home', '/']} component={Commentary} />
+        <Route path='/:id(\d+|welcome_home|)'
+          render={(props) => <Commentary getComicId={this.getComicId} {...props} />} />
         </Switch>
       </Router>
     )

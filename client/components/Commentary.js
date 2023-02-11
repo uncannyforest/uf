@@ -16,12 +16,12 @@ class Commentary extends React.Component {
   }
 
   componentDidMount() {
-    this.props.loadComments(this.props.match.params.id)
+    this.props.loadComments(this.props.getComicId())
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.match.params.id !== this.props.match.params.id)
-      this.props.loadComments(this.props.match.params.id)
+    if (prevProps.getComicId() !== this.props.getComicId())
+      this.props.loadComments(this.props.getComicId())
   }
 
   toggleComments(on) {
@@ -58,7 +58,7 @@ class Commentary extends React.Component {
             <a href='#' onClick={this.toggleComments(false)}>
               <img src='/images/flashlight-on-2x.png' className='hf'/>
             </a>
-            <CommentWriter />
+            <CommentWriter paperId={this.props.getComicId()} />
             <div className='comments'>
               {this.props.topLevelComments.map(comment => <Comment key={comment.id} data={comment} />)}
             </div>

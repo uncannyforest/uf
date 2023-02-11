@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import Login from './Login'
 import { logOutUser } from '../store/auth'
@@ -43,7 +43,7 @@ class CommentWriter extends React.Component {
     this.props.postComment({
       text: this.form.current.text.value,
       userId: user.id,
-      paperId: this.props.match.params.id,
+      paperId: this.props.paperId,
       parentId: this.props.parent
     })
     this.form.current.text.value = ''
@@ -101,4 +101,4 @@ const mapDispatch = (dispatch) => ({
   postComment: (comment) => dispatch(postComment(comment))
 })
 
-export default connect(mapState, mapDispatch)(withRouter(CommentWriter))
+export default connect(mapState, mapDispatch)(CommentWriter)
