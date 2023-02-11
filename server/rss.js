@@ -24,9 +24,11 @@ router.get('/blog/:tag', async (req, res, next) => {
     const feed = await xml2js.parseStringPromise(data)
 
     for (let item of feed.rss.channel[0].item) {
+      const description = item.description[0]
+
+      // add title
       let titleFirstPart = item.category[0]
       let titleSecondPart
-      const description = item.description[0]
       let pb = description.indexOf('<p><b>') + '<p><b>'.length
       if (description.indexOf('<p><b>') !== -1 && description.indexOf('</b></p>', pb) !== -1)
         titleSecondPart = description.substring(pb, description.indexOf('</b></p>', pb))
@@ -38,6 +40,9 @@ router.get('/blog/:tag', async (req, res, next) => {
         else titleSecondPart = firstParagraph.substring(0, firstParagraph.lastIndexOf(' ', 48)) + ' ...'
       }
       item.title = `${titleFirstPart}: ${titleSecondPart}`
+
+      // fix description whitespace
+      item.description[0] = description.replaceAll(/ (?= )/g, '&nbsp;')
     }
 
     res.send(new xml2js.Builder().buildObject(feed))
