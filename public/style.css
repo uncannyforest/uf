@@ -124,9 +124,12 @@ nav ul {
     display: grid;
     grid-template-columns: auto;
     grid-column-gap: 32px;
+    grid-row-gap: 1em;
 }
-.textinfo p:has(img + *), .textinfo p:has(* + img) {
-    grid-template-columns: auto auto;
+@media (min-device-width: 600px) and (min-width: 600px) {
+  .textinfo p:has(img + *), .textinfo p:has(* + img) {
+      grid-template-columns: auto auto;
+  }
 }
 .textinfo img, .textinfo video {
     width: 100%;
