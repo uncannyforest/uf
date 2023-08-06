@@ -42,8 +42,11 @@ class App extends React.Component {
             <Route path='/about' component={About} />
             <Route path='/bio'>
               <div className='textinfo bio'
-                dangerouslySetInnerHTML={{__html: marked.parse(about.uf_bio) +
-                `<span onclick='new Audio("/cloudpronunciation.m4a").play()'>🔈</span>`}} />
+                dangerouslySetInnerHTML={{__html: marked.parse(about.uf_bio)}} />
+            </Route>
+            <Route path='/projects'>
+              <div className='textinfo projects'
+                dangerouslySetInnerHTML={{__html: marked.parse(about.projects)}} />
             </Route>
             <Route path='/subscribe-info'>
               <div className='textinfo'

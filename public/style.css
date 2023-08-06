@@ -120,6 +120,21 @@ nav ul {
 .textinfo {
   padding: 30px
 }
+.textinfo p:has(img) {
+    display: grid;
+    grid-template-columns: auto;
+    grid-column-gap: 32px;
+}
+.textinfo p:has(img + *), .textinfo p:has(* + img) {
+    grid-template-columns: auto auto;
+}
+.textinfo img, .textinfo video {
+    width: 100%;
+}
+.projects h2 {
+  font-size: 2em;
+  margin-top: 2em;
+}
 .bio>p:last-of-type {
   display: inline;
 }
